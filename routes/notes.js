@@ -4,15 +4,7 @@ const router = express.Router()
 
 router.get('/', async (req, res) => {
   try {
-    let data = await Notes.find().sort('category')
-    if (req.query.category) {
-      const category = req.query.category
-      data = await Notes.find({ category: category }).sort('category')
-    }
-    if (req.query.title) {
-      const title = req.query.title
-      data = await Notes.find({ title: title }).sort('category')
-    }
+    const data = await Notes.find().sort('category')
     res.status(200).json(data)
   } catch (error) {
     res.status(500).json(error.message)
