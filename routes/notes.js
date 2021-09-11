@@ -3,8 +3,8 @@ const Notes = require('../models/notes')
 const router = express.Router()
 
 router.get('/', async (req, res) => {
-  let data = await Notes.find().sort('category')
   try {
+    let data = await Notes.find().sort('category')
     if (req.query.category) {
       const category = req.query.category
       data = await Notes.find({ category: category }).sort('category')
